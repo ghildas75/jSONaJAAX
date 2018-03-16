@@ -1,0 +1,68 @@
+<html>
+ <head>
+    <style>
+        table{
+            display: none;
+        }
+    </style>
+    <script>
+        function submitForm(){
+         alert("ok");
+            var xhr;
+            try{
+                xhr=new ActiveObject("Msxml2.XMLHTTP");
+            }
+            catch(e){
+                try{
+                    xhr= new ActiveObject("Microsft.XMLHTTP");
+                }
+                catch(e2){
+                    try{
+                        xhr=new XMLHttpRequest();
+                    }
+                    catch(e3){
+                        xhr=false;
+                    }
+                }
+            }
+            xhr.open("GET","ex1.json",false);
+            xhr.send();
+         if(xhr.readyState==4){
+            var reponse=xhr.responseText;
+             var ourData=(JSON.parse(reponse)).vehicule;
+            var ligneTableau=" ";
+            for(var i=0;i<ourData.length;i++){
+               ligneTableau+="<tr>";
+               var marque=ourData[i].marque;
+               ligneTableau+="<td>"+marque+"</td>";
+               var modele=ourData[i].modele;
+               var annee=ourData[i].Annee;
+               ligneTableau+="<td>"+modele+"</td>";
+                 ligneTableau+="<td>"+annee+"</td>";
+               
+               ligneTableau+="</tr>";
+               }
+               document.getElementById("tableau").innerHTML=ligneTableau;
+               document.getElementsByTagName("table")[0].style.display="table";
+            }   
+        }
+    </script>
+ </head>
+ <body>
+  <form method="GET" action="">
+   <input type="button" value="AfficherTableau" onclick ="submitForm()">
+   </form>
+  <table border="1" width="20%">
+   <thead>
+    <th>MARQUE</th>
+    <th>MODELE</th>
+    <th>ANNEE</th>
+   </thead>
+   <tbody id="tableau" align="center"></tbody>
+  </table>
+ </body>
+    
+    
+    
+    
+</html>

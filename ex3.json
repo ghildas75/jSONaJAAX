@@ -1,0 +1,14 @@
+{
+    "liste":
+    [
+        { "couleur":"Rouge",
+           "prix":"2.75"
+        },
+        { "couleur":"VERT",
+           "prix":"2.75"
+        },
+        { "couleur":"BlEU",
+           "prix":"0.5"
+        }
+    ]
+}

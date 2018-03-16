@@ -1,0 +1,64 @@
+<html>
+ <head>
+    <style>
+        table{
+            display: none;
+        }
+    </style>
+    <script>
+        function submitForm(){
+         alert("ok");
+            var xhr;
+            try{
+                xhr=new ActiveObject("Msxml2.XMLHTTP");
+            }
+            catch(e){
+                try{
+                    xhr= new ActiveObject("Microsft.XMLHTTP");
+                }
+                catch(e2){
+                    try{
+                        xhr=new XMLHttpRequest();
+                    }
+                    catch(e3){
+                        xhr=false;
+                    }
+                }
+            }
+            xhr.open("GET","ex3.json",false);
+            xhr.send();
+         if(xhr.readyState==4){
+            var reponse=xhr.responseText;
+             var ourData=(JSON.parse(reponse)).liste;
+            var ligneTableau=" ";
+            for(var i=0;i<ourData.length;i++){
+               ligneTableau+="<tr>";
+               var couleur=ourData[i].couleur;
+               ligneTableau+="<td>"+couleur+"</td>";
+               var prix=ourData[i].prix;
+               ligneTableau+="<td>"+prix+"</td>";
+               ligneTableau+="</tr>";
+               }
+               document.getElementById("tableau").innerHTML=ligneTableau;
+               document.getElementsByTagName("table")[0].style.display="table";
+            }   
+        }
+    </script>
+ </head>
+ <body>
+  <form method="GET" action="">
+   <input type="button" value="AfficherTableau" onclick ="submitForm()">
+   </form>
+  <table border="1" width="20%">
+   <thead>
+    <th>Couleur</th>
+    <th>Prix</th>
+   </thead>
+   <tbody id="tableau" align="center"></tbody>
+  </table>
+ </body>
+    
+    
+    
+    
+</html>
